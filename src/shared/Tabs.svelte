@@ -32,6 +32,8 @@
     font-size: 18px;
     color: #555;
     cursor: pointer;
+    width: 8rem;
+    text-align: center;
   }
 
   .active {
