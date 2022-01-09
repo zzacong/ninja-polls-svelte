@@ -12,39 +12,7 @@
   let activeItem = CURRENT_POLL
 
   const handleTabChange = ({ detail }) => (activeItem = detail)
-
-  let polls = [
-    {
-      id: 1,
-      question: 'Python or JavaScript?',
-      answerA: 'Python',
-      answerB: 'JavaScript',
-      votesA: 9,
-      votesB: 15,
-    },
-    {
-      id: 2,
-      question: 'Backend or frontend?',
-      answerA: 'Backend',
-      answerB: 'Frontend',
-      votesA: 33,
-      votesB: 23,
-    },
-  ]
-
-  const handleAdd = ({ detail }) => {
-    polls = [detail, ...polls]
-    activeItem = CURRENT_POLL
-  }
-
-  const handleVote = ({ detail }) => {
-    const { id, option } = detail
-    polls = polls.map(p => {
-      if (p.id !== id) return p
-      if (option === 'a') return { ...p, votesA: ++p.votesA }
-      if (option === 'b') return { ...p, votesB: ++p.votesB }
-    })
-  }
+  const handleAdd = () => (activeItem = CURRENT_POLL)
 </script>
 
 <Header />
@@ -52,7 +20,7 @@
   <Tabs {items} {activeItem} on:tabChange={handleTabChange} />
 
   {#if activeItem === CURRENT_POLL}
-    <PollList {polls} on:vote={handleVote} />
+    <PollList />
   {:else if activeItem === NEW_POLL}
     <CreatePollForm on:add={handleAdd} />
   {/if}
